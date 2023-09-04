@@ -18,8 +18,8 @@ class TemTem {
   String? icon;
   String? lumaIcon;
   GenderRatio? genderRatio;
-  var catchRate;
-  var hatchMins;
+  num catchRate;
+  num hatchMins;
   TvYields? tvYields;
   String? gameDescription;
   String? wikiRenderStaticUrl;
@@ -70,37 +70,37 @@ class TemTem {
     portraitWikiUrl = json['portraitWikiUrl'];
     lumaPortraitWikiUrl = json['lumaPortraitWikiUrl'];
     wikiUrl = json['wikiUrl'];
-    stats = json['stats'] != null ? new Stats.fromJson(json['stats']) : null;
+    stats = json['stats'] != null ? Stats.fromJson(json['stats']) : null;
     traits = json['traits'].cast<String>();
     details =
-        json['details'] != null ? new Details.fromJson(json['details']) : null;
+        json['details'] != null ? Details.fromJson(json['details']) : null;
     if (json['techniques'] != null) {
       techniques = <Techniques>[];
       json['techniques'].forEach((v) {
-        techniques!.add(new Techniques.fromJson(v));
+        techniques!.add(Techniques.fromJson(v));
       });
     }
     trivia = json['trivia'].cast<String>();
     evolution = json['evolution'] != null
-        ? new Evolution.fromJson(json['evolution'])
+        ? Evolution.fromJson(json['evolution'])
         : null;
     wikiPortraitUrlLarge = json['wikiPortraitUrlLarge'];
     lumaWikiPortraitUrlLarge = json['lumaWikiPortraitUrlLarge'];
     if (json['locations'] != null) {
       locations = <Locations>[];
       json['locations'].forEach((v) {
-        locations!.add(new Locations.fromJson(v));
+        locations!.add(Locations.fromJson(v));
       });
     }
     icon = json['icon'];
     lumaIcon = json['lumaIcon'];
     genderRatio = json['genderRatio'] != null
-        ? new GenderRatio.fromJson(json['genderRatio'])
+        ? GenderRatio.fromJson(json['genderRatio'])
         : null;
     catchRate = json['catchRate'];
     hatchMins = json['hatchMins'];
     tvYields = json['tvYields'] != null
-        ? new TvYields.fromJson(json['tvYields'])
+        ? TvYields.fromJson(json['tvYields'])
         : null;
     gameDescription = json['gameDescription'];
     wikiRenderStaticUrl = json['wikiRenderStaticUrl'];
@@ -114,51 +114,51 @@ class TemTem {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['number'] = this.number;
-    data['name'] = this.name;
-    data['types'] = this.types;
-    data['portraitWikiUrl'] = this.portraitWikiUrl;
-    data['lumaPortraitWikiUrl'] = this.lumaPortraitWikiUrl;
-    data['wikiUrl'] = this.wikiUrl;
-    if (this.stats != null) {
-      data['stats'] = this.stats!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['number'] = number;
+    data['name'] = name;
+    data['types'] = types;
+    data['portraitWikiUrl'] = portraitWikiUrl;
+    data['lumaPortraitWikiUrl'] = lumaPortraitWikiUrl;
+    data['wikiUrl'] = wikiUrl;
+    if (stats != null) {
+      data['stats'] = stats!.toJson();
     }
-    data['traits'] = this.traits;
-    if (this.details != null) {
-      data['details'] = this.details!.toJson();
+    data['traits'] = traits;
+    if (details != null) {
+      data['details'] = details!.toJson();
     }
-    if (this.techniques != null) {
-      data['techniques'] = this.techniques!.map((v) => v.toJson()).toList();
+    if (techniques != null) {
+      data['techniques'] = techniques!.map((v) => v.toJson()).toList();
     }
-    data['trivia'] = this.trivia;
-    if (this.evolution != null) {
-      data['evolution'] = this.evolution!.toJson();
+    data['trivia'] = trivia;
+    if (evolution != null) {
+      data['evolution'] = evolution!.toJson();
     }
-    data['wikiPortraitUrlLarge'] = this.wikiPortraitUrlLarge;
-    data['lumaWikiPortraitUrlLarge'] = this.lumaWikiPortraitUrlLarge;
-    if (this.locations != null) {
-      data['locations'] = this.locations!.map((v) => v.toJson()).toList();
+    data['wikiPortraitUrlLarge'] = wikiPortraitUrlLarge;
+    data['lumaWikiPortraitUrlLarge'] = lumaWikiPortraitUrlLarge;
+    if (locations != null) {
+      data['locations'] = locations!.map((v) => v.toJson()).toList();
     }
-    data['icon'] = this.icon;
-    data['lumaIcon'] = this.lumaIcon;
-    if (this.genderRatio != null) {
-      data['genderRatio'] = this.genderRatio!.toJson();
+    data['icon'] = icon;
+    data['lumaIcon'] = lumaIcon;
+    if (genderRatio != null) {
+      data['genderRatio'] = genderRatio!.toJson();
     }
-    data['catchRate'] = this.catchRate;
-    data['hatchMins'] = this.hatchMins;
-    if (this.tvYields != null) {
-      data['tvYields'] = this.tvYields!.toJson();
+    data['catchRate'] = catchRate;
+    data['hatchMins'] = hatchMins;
+    if (tvYields != null) {
+      data['tvYields'] = tvYields!.toJson();
     }
-    data['gameDescription'] = this.gameDescription;
-    data['wikiRenderStaticUrl'] = this.wikiRenderStaticUrl;
-    data['wikiRenderAnimatedUrl'] = this.wikiRenderAnimatedUrl;
-    data['wikiRenderStaticLumaUrl'] = this.wikiRenderStaticLumaUrl;
-    data['wikiRenderAnimatedLumaUrl'] = this.wikiRenderAnimatedLumaUrl;
-    data['renderStaticImage'] = this.renderStaticImage;
-    data['renderStaticLumaImage'] = this.renderStaticLumaImage;
-    data['renderAnimatedImage'] = this.renderAnimatedImage;
-    data['renderAnimatedLumaImage'] = this.renderAnimatedLumaImage;
+    data['gameDescription'] = gameDescription;
+    data['wikiRenderStaticUrl'] = wikiRenderStaticUrl;
+    data['wikiRenderAnimatedUrl'] = wikiRenderAnimatedUrl;
+    data['wikiRenderStaticLumaUrl'] = wikiRenderStaticLumaUrl;
+    data['wikiRenderAnimatedLumaUrl'] = wikiRenderAnimatedLumaUrl;
+    data['renderStaticImage'] = renderStaticImage;
+    data['renderStaticLumaImage'] = renderStaticLumaImage;
+    data['renderAnimatedImage'] = renderAnimatedImage;
+    data['renderAnimatedLumaImage'] = renderAnimatedLumaImage;
     return data;
   }
 }
@@ -195,15 +195,15 @@ class Stats {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['hp'] = this.hp;
-    data['sta'] = this.sta;
-    data['spd'] = this.spd;
-    data['atk'] = this.atk;
-    data['def'] = this.def;
-    data['spatk'] = this.spatk;
-    data['spdef'] = this.spdef;
-    data['total'] = this.total;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['hp'] = hp;
+    data['sta'] = sta;
+    data['spd'] = spd;
+    data['atk'] = atk;
+    data['def'] = def;
+    data['spatk'] = spatk;
+    data['spdef'] = spdef;
+    data['total'] = total;
     return data;
   }
 }
@@ -216,18 +216,18 @@ class Details {
 
   Details.fromJson(Map<String, dynamic> json) {
     height =
-        json['height'] != null ? new Height.fromJson(json['height']) : null;
+        json['height'] != null ? Height.fromJson(json['height']) : null;
     weight =
-        json['weight'] != null ? new Weight.fromJson(json['weight']) : null;
+        json['weight'] != null ? Weight.fromJson(json['weight']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.height != null) {
-      data['height'] = this.height!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (height != null) {
+      data['height'] = height!.toJson();
     }
-    if (this.weight != null) {
-      data['weight'] = this.weight!.toJson();
+    if (weight != null) {
+      data['weight'] = weight!.toJson();
     }
     return data;
   }
@@ -245,9 +245,9 @@ class Height {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cm'] = this.cm;
-    data['inches'] = this.inches;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['cm'] = cm;
+    data['inches'] = inches;
     return data;
   }
 }
@@ -264,9 +264,9 @@ class Weight {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['kg'] = this.kg;
-    data['lbs'] = this.lbs;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['kg'] = kg;
+    data['lbs'] = lbs;
     return data;
   }
 }
@@ -285,10 +285,10 @@ class Techniques {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['source'] = this.source;
-    data['levels'] = this.levels;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['source'] = source;
+    data['levels'] = levels;
     return data;
   }
 }
@@ -303,8 +303,8 @@ class Evolution {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['evolves'] = this.evolves;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['evolves'] = evolves;
     return data;
   }
 }
@@ -335,19 +335,19 @@ class Locations {
     frequency = json['frequency'];
     level = json['level'];
     freetem =
-        json['freetem'] != null ? new Freetem.fromJson(json['freetem']) : null;
+        json['freetem'] != null ? Freetem.fromJson(json['freetem']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['location'] = this.location;
-    data['place'] = this.place;
-    data['note'] = this.note;
-    data['island'] = this.island;
-    data['frequency'] = this.frequency;
-    data['level'] = this.level;
-    if (this.freetem != null) {
-      data['freetem'] = this.freetem!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['location'] = location;
+    data['place'] = place;
+    data['note'] = note;
+    data['island'] = island;
+    data['frequency'] = frequency;
+    data['level'] = level;
+    if (freetem != null) {
+      data['freetem'] = freetem!.toJson();
     }
     return data;
   }
@@ -369,11 +369,11 @@ class Freetem {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['minLevel'] = this.minLevel;
-    data['maxLevel'] = this.maxLevel;
-    data['minPansuns'] = this.minPansuns;
-    data['maxPansuns'] = this.maxPansuns;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['minLevel'] = minLevel;
+    data['maxLevel'] = maxLevel;
+    data['minPansuns'] = minPansuns;
+    data['maxPansuns'] = maxPansuns;
     return data;
   }
 }
@@ -390,9 +390,9 @@ class GenderRatio {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['male'] = this.male;
-    data['female'] = this.female;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['male'] = male;
+    data['female'] = female;
     return data;
   }
 }
@@ -426,14 +426,14 @@ class TvYields {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['hp'] = this.hp;
-    data['sta'] = this.sta;
-    data['spd'] = this.spd;
-    data['atk'] = this.atk;
-    data['def'] = this.def;
-    data['spatk'] = this.spatk;
-    data['spdef'] = this.spdef;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['hp'] = hp;
+    data['sta'] = sta;
+    data['spd'] = spd;
+    data['atk'] = atk;
+    data['def'] = def;
+    data['spatk'] = spatk;
+    data['spdef'] = spdef;
     return data;
   }
 }

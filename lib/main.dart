@@ -7,6 +7,8 @@ import 'package:temtem_dex/app.dart';
 
 Future main() async {
   List<dynamic> jsonTemtem = await RequestTemtem.fetchTemtem();
-  jsonTemtem.forEach((temtem) => temtems.add(TemTem.fromJson(temtem)));
-  runApp(TemtemDex());
+  for (var temtem in jsonTemtem) {
+    temtems.add(TemTem.fromJson(temtem));
+  }
+  runApp(const TemtemDex());
 }

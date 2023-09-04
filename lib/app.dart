@@ -55,14 +55,15 @@ class _HomePageState extends State<HomePage> {
                   onChanged: (value) {
                     List<TemTem> filtered = [];
                     for (var e in temtems) {
-                      if (e.name!.toLowerCase().contains(value.toLowerCase()))
+                      if (e.name!.toLowerCase().contains(value.toLowerCase())) {
                         filtered.add(e);
+                      }
                     }
                     setState(() {
                       if (value.isEmpty) {
-                        this.title = widget.title;
+                        title = widget.title;
                       } else {
-                        this.title = value;
+                        title = value;
                       }
                       temtemsFiltered = filtered;
                     });
