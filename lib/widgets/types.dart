@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class CardList extends StatelessWidget {
-  List list;
-  CardList(this.list, {super.key});
+class Types extends StatelessWidget {
+  String type;
+  Types(this.type, {super.key});
   @override
   Widget build(BuildContext context) {
-    List<Widget> types = [];
     Map<String, String> urlTypes = {
       "Neutral":
           "https://temtem.wiki.gg/images/thumb/b/b3/Neutral.png/64px-Neutral.png",
@@ -31,20 +30,10 @@ class CardList extends StatelessWidget {
       "Toxic":
           "https://temtem.wiki.gg/images/thumb/9/96/Toxic.png/64px-Toxic.png",
     };
-    for (var i = 0; i < list.length; i++) {
-      types.add(CachedNetworkImage(
-        imageUrl: urlTypes[list[i]] ?? '',
-        width: 30,
-        height: 30,
-      )
-          // Image.network(urlTypes[list[i]] ?? '')
-          );
-    }
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: types,
+    return CachedNetworkImage(
+      imageUrl: urlTypes[type] ?? '',
+      width: 30,
+      height: 30,
     );
   }
 }

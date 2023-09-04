@@ -1,5 +1,6 @@
 class TemTem {
   int? number;
+  bool isExpanded = false;
   String? name;
   List<String>? types;
   String? portraitWikiUrl;
