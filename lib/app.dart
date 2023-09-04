@@ -79,29 +79,31 @@ class _HomePageState extends State<HomePage> {
           actions: [
             if (!_isSearching)
               IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _isSearching = !_isSearching;
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  )),
+                onPressed: () {
+                  setState(() {
+                    _isSearching = !_isSearching;
+                  });
+                },
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+              ),
             if (!_isSearching)
               IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _collapsed = !_collapsed;
-                      for (var temtem in temtems) {
-                        temtem.isExpanded = _collapsed;
-                      }
-                    });
-                  },
-                  icon: Icon(
-                    !_collapsed ? Icons.unfold_more : Icons.unfold_less,
-                    color: Colors.white,
-                  ))
+                onPressed: () {
+                  setState(() {
+                    _collapsed = !_collapsed;
+                    for (var temtem in temtems) {
+                      temtem.isExpanded = !_collapsed;
+                    }
+                  });
+                },
+                icon: Icon(
+                  !_collapsed ? Icons.unfold_less : Icons.unfold_more,
+                  color: Colors.white,
+                ),
+              )
           ],
         ),
         body: Container(
@@ -140,12 +142,11 @@ class _HomePageState extends State<HomePage> {
                               IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      _collapsed = !_collapsed;
                                       temtemsFiltered[index].isExpanded =
                                           !temtemsFiltered[index].isExpanded;
                                     });
                                   },
-                                  icon: Icon(!_collapsed
+                                  icon: Icon(temtemsFiltered[index].isExpanded
                                       ? Icons.expand_less
                                       : Icons.expand_more))
                             ],
