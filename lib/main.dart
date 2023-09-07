@@ -3,7 +3,6 @@ import 'package:temtem_dex/models/temtem.dart';
 import 'http/request.dart';
 import 'helpers/state.dart';
 import 'package:temtem_dex/app.dart';
-// import 'package:intl/intl.dart';
 
 Future main() async {
   List<dynamic> jsonTemtem = await RequestTemtem.fetchTemtem();

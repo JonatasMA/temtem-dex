@@ -1,93 +1,106 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
 class ColorsUtils {
-  static Color typeColor(type) {
+  static Color typeColor({String type = ''}) {
     switch (type) {
-      case 'bug':
-        return const Color.fromRGBO(168, 184, 32, 1);
-      case 'dark':
-        return const Color.fromRGBO(112, 88, 72, 1);
-      case 'dragon':
-        return const Color.fromRGBO(112, 56, 248, 1);
-      case 'electric':
-        return const Color.fromRGBO(248, 208, 48, 1);
-      case 'fairy':
-        return const Color.fromRGBO(238, 153, 172, 1);
-      case 'fire':
-        return const Color.fromRGBO(240, 128, 48, 1);
-      case 'fighting':
-        return const Color.fromRGBO(192, 48, 40, 1);
-      case 'flying':
-        return const Color.fromRGBO(168, 144, 240, 1);
-      case 'ghost':
-        return const Color.fromRGBO(112, 88, 152, 1);
-      case 'grass':
-        return const Color.fromRGBO(120, 200, 80, 1);
-      case 'ground':
-        return const Color.fromRGBO(224, 192, 104, 1);
-      case 'ice':
-        return const Color.fromRGBO(152, 216, 216, 1);
-      case 'normal':
-        return const Color.fromRGBO(168, 168, 120, 1);
-      case 'poison':
-        return const Color.fromRGBO(160, 64, 160, 1);
-      case 'psychic':
-        return const Color.fromRGBO(248, 88, 136, 1);
-      case 'rock':
-        return const Color.fromRGBO(184, 160, 56, 1);
-      case 'steel':
-        return const Color.fromRGBO(184, 184, 208, 1);
-      case 'water':
-        return const Color.fromRGBO(104, 144, 240, 1);
+      case 'Fire':
+        return const Color.fromRGBO(231, 92, 77, 1);
+      case 'Toxic':
+        return const Color.fromRGBO(91, 86, 91, 1);
+      case 'Melee':
+        return const Color.fromRGBO(250, 147, 95, 1);
+      case 'Nature':
+        return const Color.fromRGBO(172, 221, 119, 1);
+      case 'Water':
+        return const Color.fromRGBO(69, 202, 255, 1);
+      case 'Electric':
+        return const Color.fromRGBO(255, 225, 115, 1);
+      case 'Mental':
+        return const Color.fromRGBO(195, 105, 162, 1);
+      case 'Earth':
+        return const Color.fromRGBO(185, 120, 91, 1);
+      case 'Wind':
+        return const Color.fromRGBO(6, 251, 176, 1);
+      case 'Crystal':
+        return const Color.fromRGBO(233, 74, 102, 1);
+      case 'Digital':
+        return const Color.fromRGBO(163, 191, 192, 1);
+      case 'Neutral':
+        return const Color.fromRGBO(229, 246, 247, 1);
     }
-    return const Color.fromRGBO(0, 0, 0, 1);
+    return const Color.fromRGBO(73, 50, 78, 1);
   }
 
-  static Color pokemonColor(color) {
-    switch (color) {
-      case 'red':
-        return const Color.fromRGBO(236, 132, 132, 1);
-      case 'blue':
-        return const Color.fromRGBO(148, 219, 238, 1);
-      case 'yellow':
-        return const Color.fromRGBO(255, 255, 153, 1);
-      case 'green':
-        return const Color.fromRGBO(100, 211, 100, 1);
-      case 'black':
-        return const Color.fromRGBO(187, 187, 187, 1);
-      case 'brown':
-        return const Color.fromRGBO(204, 153, 102, 1);
-      case 'purple':
-        return const Color.fromRGBO(193, 131, 193, 1);
-      case 'gray':
-        return const Color.fromRGBO(209, 209, 224, 1);
-      case 'white':
-        return const Color.fromRGBO(255, 255, 255, 1);
-      case 'pink':
-        return const Color.fromRGBO(244, 189, 201, 1);
+  static Color textColorOverType({String type = ''}) {
+    switch (type) {
+      case 'Fire':
+        return Colors.black;
+      case 'Toxic':
+        return Colors.white;
+      case 'Melee':
+        return Colors.black;
+      case 'Nature':
+        return Colors.black;
+      case 'Water':
+        return Colors.black;
+      case 'Electric':
+        return Colors.black;
+      case 'Mental':
+        return Colors.black;
+      case 'Earth':
+        return Colors.black;
+      case 'Wind':
+        return Colors.black;
+      case 'Crystal':
+        return Colors.black;
+      case 'Digital':
+        return Colors.black;
+      case 'Neutral':
+        return Colors.black;
     }
-
-    return const Color.fromRGBO(74, 74, 74, 1);
+    return Colors.black;
   }
 
   static Color statsBar(stat, opacity) {
     switch (stat) {
       case 'HP':
         return Color.fromRGBO(255, 89, 89, opacity);
-      case 'Atk':
+      case 'STA':
+        return Color.fromRGBO(32, 208, 210, opacity);
+      case 'ATK':
         return Color.fromRGBO(245, 172, 120, opacity);
-      case 'Def':
+      case 'DEF':
         return Color.fromRGBO(250, 224, 120, opacity);
-      case 'Sp. Atk':
+      case 'SPATK':
         return Color.fromRGBO(157, 183, 245, opacity);
-      case 'Sp. Def':
+      case 'SPDEF':
         return Color.fromRGBO(167, 219, 141, opacity);
-      case 'Spe':
+      case 'SPD':
         return Color.fromRGBO(250, 146, 178, opacity);
     }
 
     return const Color.fromRGBO(74, 74, 74, 1);
+  }
+
+  static Color typeMatchup(modifier) {
+    switch (modifier) {
+      case '25':
+        return const Color.fromRGBO(231, 111, 81, 1);
+      case '50':
+        return  const Color.fromRGBO(244, 162, 97, 1);
+      case '200':
+        return  const Color.fromRGBO(233, 196, 106, 1);
+      case '400':
+        return  const Color.fromRGBO(42, 157, 143, 1);
+    }
+
+    return const Color.fromRGBO(74, 74, 74, 1);
+  }
+
+  static Color harmonize(Color color) {
+    Color harmonized = color.harmonizeWith(typeColor(type: 'Earth'));
+
+    return harmonized;
   }
 }

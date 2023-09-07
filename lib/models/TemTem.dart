@@ -1,13 +1,13 @@
 class TemTem {
-  int? number;
-  bool isExpanded = false;
-  String? name;
-  List<String>? types;
-  String? portraitWikiUrl;
+  late int number;
+  late bool isExpanded = false;
+  late String name;
+  late List<String> types;
+  late String portraitWikiUrl;
   String? lumaPortraitWikiUrl;
-  String? wikiUrl;
-  Stats? stats;
-  List<String>? traits;
+  late String wikiUrl;
+  late Stats stats;
+  late List<String> traits;
   Details? details;
   List<Techniques>? techniques;
   List<String>? trivia;
@@ -18,28 +18,28 @@ class TemTem {
   String? icon;
   String? lumaIcon;
   GenderRatio? genderRatio;
-  num catchRate;
-  num hatchMins;
+  num? catchRate;
+  num? hatchMins;
   TvYields? tvYields;
   String? gameDescription;
   String? wikiRenderStaticUrl;
-  String? wikiRenderAnimatedUrl;
+  late String wikiRenderAnimatedUrl;
   String? wikiRenderStaticLumaUrl;
-  String? wikiRenderAnimatedLumaUrl;
+  late String wikiRenderAnimatedLumaUrl;
   String? renderStaticImage;
   String? renderStaticLumaImage;
   String? renderAnimatedImage;
   String? renderAnimatedLumaImage;
 
   TemTem(temtem,
-      {this.number,
-      this.name,
-      this.types,
-      this.portraitWikiUrl,
+      {required this.number,
+      required this.name,
+      required this.types,
+      required this.portraitWikiUrl,
       this.lumaPortraitWikiUrl,
-      this.wikiUrl,
-      this.stats,
-      this.traits,
+      required this.wikiUrl,
+      required this.stats,
+      required this.traits,
       this.details,
       this.techniques,
       this.trivia,
@@ -55,9 +55,9 @@ class TemTem {
       this.tvYields,
       this.gameDescription,
       this.wikiRenderStaticUrl,
-      this.wikiRenderAnimatedUrl,
+      required this.wikiRenderAnimatedUrl,
       this.wikiRenderStaticLumaUrl,
-      this.wikiRenderAnimatedLumaUrl,
+      required this.wikiRenderAnimatedLumaUrl,
       this.renderStaticImage,
       this.renderStaticLumaImage,
       this.renderAnimatedImage,
@@ -70,7 +70,7 @@ class TemTem {
     portraitWikiUrl = json['portraitWikiUrl'];
     lumaPortraitWikiUrl = json['lumaPortraitWikiUrl'];
     wikiUrl = json['wikiUrl'];
-    stats = json['stats'] != null ? Stats.fromJson(json['stats']) : null;
+    stats = Stats.fromJson(json['stats']);
     traits = json['traits'].cast<String>();
     details =
         json['details'] != null ? Details.fromJson(json['details']) : null;
@@ -99,9 +99,8 @@ class TemTem {
         : null;
     catchRate = json['catchRate'];
     hatchMins = json['hatchMins'];
-    tvYields = json['tvYields'] != null
-        ? TvYields.fromJson(json['tvYields'])
-        : null;
+    tvYields =
+        json['tvYields'] != null ? TvYields.fromJson(json['tvYields']) : null;
     gameDescription = json['gameDescription'];
     wikiRenderStaticUrl = json['wikiRenderStaticUrl'];
     wikiRenderAnimatedUrl = json['wikiRenderAnimatedUrl'];
@@ -121,9 +120,7 @@ class TemTem {
     data['portraitWikiUrl'] = portraitWikiUrl;
     data['lumaPortraitWikiUrl'] = lumaPortraitWikiUrl;
     data['wikiUrl'] = wikiUrl;
-    if (stats != null) {
-      data['stats'] = stats!.toJson();
-    }
+    data['stats'] = stats.toJson();
     data['traits'] = traits;
     if (details != null) {
       data['details'] = details!.toJson();
@@ -164,24 +161,24 @@ class TemTem {
 }
 
 class Stats {
-  int? hp;
-  int? sta;
-  int? spd;
-  int? atk;
-  int? def;
-  int? spatk;
-  int? spdef;
-  int? total;
+  late int hp;
+  late int sta;
+  late int spd;
+  late int atk;
+  late int def;
+  late int spatk;
+  late int spdef;
+  late int total;
 
   Stats(
-      {this.hp,
-      this.sta,
-      this.spd,
-      this.atk,
-      this.def,
-      this.spatk,
-      this.spdef,
-      this.total});
+      {required this.hp,
+      required this.sta,
+      required this.spd,
+      required this.atk,
+      required this.def,
+      required this.spatk,
+      required this.spdef,
+      required this.total});
 
   Stats.fromJson(Map<String, dynamic> json) {
     hp = json['hp'];
@@ -215,10 +212,8 @@ class Details {
   Details({this.height, this.weight});
 
   Details.fromJson(Map<String, dynamic> json) {
-    height =
-        json['height'] != null ? Height.fromJson(json['height']) : null;
-    weight =
-        json['weight'] != null ? Weight.fromJson(json['weight']) : null;
+    height = json['height'] != null ? Height.fromJson(json['height']) : null;
+    weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
   }
 
   Map<String, dynamic> toJson() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:temtem_dex/utils/colors_utils.dart';
 import 'package:temtem_dex/widgets/modifyer_text.dart';
 import 'package:temtem_dex/widgets/types.dart';
 import '../helpers/state.dart';
@@ -43,7 +44,7 @@ class WeaknessesList extends StatelessWidget {
       children: [
         if (quarter.length > 1)
           Container(
-            color: Colors.red,
+            color: ColorsUtils.typeMatchup('25'),
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -52,7 +53,7 @@ class WeaknessesList extends StatelessWidget {
           ),
         if (half.length > 1)
           Container(
-            color: Colors.orange,
+            color: ColorsUtils.typeMatchup('50'),
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -62,7 +63,7 @@ class WeaknessesList extends StatelessWidget {
         if (duplicate.length > 1)
           Container(
             decoration: BoxDecoration(
-                color: Colors.yellow,
+                color: ColorsUtils.typeMatchup('200'),
                 borderRadius: quadruple.length == 1
                     ? const BorderRadius.vertical(bottom: Radius.circular(12))
                     : null),
@@ -74,8 +75,8 @@ class WeaknessesList extends StatelessWidget {
           ),
         if (quadruple.length > 1)
           Container(
-            decoration: const BoxDecoration(
-                color: Colors.green,
+            decoration: BoxDecoration(
+                color: ColorsUtils.typeMatchup('400'),
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(12))),
             child: Padding(
