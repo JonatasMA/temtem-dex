@@ -22,11 +22,9 @@ class _InfoScreenState extends State<InfoScreen> {
   bool luma = false;
   @override
   Widget build(BuildContext context) {
-    // Extract the arguments from the current ModalRoute
-    // settings and cast them as ScreenArguments.
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
     final TemTem temtem = args.temtem;
-
+    bool stretch = true;
     List<Widget> generateTypes() {
       List<Widget> types = [];
       for (var i = 0; i < temtem.types.length; i++) {
@@ -36,74 +34,81 @@ class _InfoScreenState extends State<InfoScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          temtem.name,
-          style: TextStyle(
-            color: ColorsUtils.textColorOverType(type: temtem.types[0]),
-          ),
-        ),
-        backgroundColor: ColorsUtils.typeColor(type: temtem.types[0]),
-        iconTheme: IconThemeData(
-          color: ColorsUtils.textColorOverType(type: temtem.types[0]),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  luma = !luma;
-                });
-              },
-              icon: Icon(luma ? Icons.light_mode : Icons.dark_mode)),
-          IconButton(
-              onPressed: () async {
-                print(temtem.wikiUrl);
-                Uri uri = Uri.parse(temtem.wikiUrl);
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.inAppWebView);
-                }
-              },
-              icon: const Icon(Icons.open_in_new))
-        ],
-      ),
-      body: Center(
-        child: Container(
-          color: ColorsUtils.typeColor(),
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: ColorsUtils.typeColor(type: temtem.types[0]),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar.large(
+              centerTitle: false,
+              backgroundColor: ColorsUtils.typeColor(type: temtem.types[0]),
+              iconTheme: IconThemeData(
+                color: ColorsUtils.textColorOverType(type: temtem.types[0]),
+              ),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        luma = !luma;
+                      });
+                    },
+                    icon: Icon(luma ? Icons.light_mode : Icons.dark_mode)),
+                IconButton(
+                    onPressed: () async {
+                      Uri uri = Uri.parse(temtem.wikiUrl);
+                      if (await canLaunchUrl(uri)) {
+                        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+                      }
+                    },
+                    icon: const Icon(Icons.open_in_new))
+              ],
+              expandedHeight: 400.0,
+              floating: true,
+              pinned: true,
+              snap: true,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text(
+                  temtem.name,
+                  style: TextStyle(
+                    color: ColorsUtils.textColorOverType(type: temtem.types[0]),
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    CachedNetworkImage(
-                        width: 150,
+                background: Container(
+                  padding: const EdgeInsets.fromLTRB(16, 100, 16, 16),
+                  decoration: BoxDecoration(
+                    color: ColorsUtils.typeColor(type: temtem.types[0]),
+                  ),
+                  child: Column(
+                    children: [
+                      CachedNetworkImage(
+                        height: 200,
+                        fit: BoxFit.fitHeight,
                         imageUrl: luma
                             ? temtem.wikiRenderAnimatedLumaUrl
                             : temtem.wikiRenderAnimatedUrl,
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator()),
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      child: Text(
-                        temtem.name,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                          color: ColorsUtils.textColorOverType(
-                              type: temtem.types[0]),
+                        progressIndicatorBuilder: (context, url, progress) =>
+                            Center(
+                          heightFactor: 0.5,
+                          widthFactor: 0.5,
+                          child: SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: CircularProgressIndicator(
+                              value: progress.progress,
+                              color: ColorsUtils.textColorOverType(
+                                  type: temtem.types[0]),
+                              strokeWidth: 5.0,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [...generateTypes()],
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      child: Text(
+                      Container(
+                        padding: const EdgeInsets.all(6),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [...generateTypes()],
+                        ),
+                      ),
+                      Text(
                         temtem.traits.length > 1
                             ? '${temtem.traits[0]} | ${temtem.traits[1]}'
                             : temtem.traits[0],
@@ -112,13 +117,22 @@ class _InfoScreenState extends State<InfoScreen> {
                               type: temtem.types[0]),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              WeaknessesList(temtem.types),
-              TemTemStats(temtem.stats)
-            ],
+            ),
+          ];
+        },
+        body: Center(
+          child: Container(
+            color: ColorsUtils.typeColor(),
+            child: Column(
+              children: [
+                WeaknessesList(temtem.types),
+                TemTemStats(temtem.stats)
+              ],
+            ),
           ),
         ),
       ),
